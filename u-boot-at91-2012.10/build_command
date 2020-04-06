@@ -1,0 +1,12 @@
+#!/bin/bash
+
+CROSS_COMPILE=/usr/local/arm/arm-2008q3-linux/bin/arm-none-linux-gnueabi-
+export CROSS_COMPILE
+
+mkdir build
+
+export BUILD_DIR=./build
+
+
+
+

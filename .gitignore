@@ -1,0 +1,3 @@
+*.ubifs
+*.cramfs
+.vscode

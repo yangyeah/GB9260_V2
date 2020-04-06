@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -d /sys/block/*/$MDEV ] ; then
+	mount -t vfat -o iocharset=cp936 /dev/$MDEV /mnt/udisk
+fi

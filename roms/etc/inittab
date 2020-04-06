@@ -1,0 +1,8 @@
+::sysinit:/etc/init.d/rcS
+console::askfirst:-/bin/login
+::once:/usr/sbin/telnetd -l /bin/login
+::ctrlaltdel:/sbin/reboot
+::shutdown:/sbin/swapoff -a
+::shutdown:/bin/umount -a -r
+::restart:/sbin/init
+

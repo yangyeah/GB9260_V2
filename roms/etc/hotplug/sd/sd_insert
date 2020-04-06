@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -d /sys/block/*/$MDEV ] ; then
+	mount -t vfat -o codepage=936,iocharset=cp936,noatime /dev/$MDEV /mnt/sd
+fi

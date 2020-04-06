@@ -1,0 +1,42 @@
+#!/bin/sh
+
+
+if [ -f /mnt/ubifs/net.conf ] ; then
+	source /mnt/ubifs/net.conf
+
+	if grep -q "^/dev/root / nfs " /etc/mtab ; then
+		echo -n NFS root ... > /dev/ttyS4
+	else
+		ifconfig eth0 down
+		if [ $IPADDR ] ; then
+			ifconfig eth0 $IPADDR netmask $NETMASK
+		fi
+
+		if [ $IPADDR1 ] ; then
+				ifconfig eth0:0 $IPADDR1 netmask $NETMASK1
+		fi
+
+		if [ $IPADDR2 ] ; then
+				ifconfig eth0:1 $IPADDR2 netmask $NETMASK2
+		fi
+				
+		if [ $IPADDR3 ] ; then                                    
+                                ifconfig eth0:2 $IPADDR3 netmask $NETMASK3
+                fi
+
+		ifconfig eth0 up
+		if [ $GATEWAY ] ; then
+			route add default gw $GATEWAY
+		fi
+	fi
+
+else
+
+	if grep -q "^/dev/root / nfs " /etc/mtab ; then
+		echo -n NFS root ... > /dev/ttyS0
+	else
+	ifconfig eth0 192.168.1.233 netmask 255.255.255.0 up
+	cp /etc/net.conf /mnt/ubifs
+	fi
+fi
+
